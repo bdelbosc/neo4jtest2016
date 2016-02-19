@@ -14,7 +14,7 @@ Create a graph service that use a contribution to define a mapping to declare No
 The graph db is secondary store (all information are in the repository),
 This brings limitations:
   - There will be one doc per node
-  - The relationship will have no properties
+  - The relationship will have no property
   - Relationship are directed (one way)
   - The label is the document type or mixintype
 
@@ -34,19 +34,17 @@ For document type File:
 	</mapping>
 
 Indexing (or graphing) a doc can ben done with a sync listener because neo4j handle transaction.
-   
-on creation:
-   send create node + relationship
 
-on update:
-   send merge on create node
-   drop all relation from node, then create them
-
-on delete:
-   drop relation from node
-   drop relation to node
-   drop node
+- on creation:
+  - send create node + relationship
+- on update:
+  - send merge on create node
+  - drop all relation from node, then create them
+- on delete:
+   - drop relation from node
+   - drop relation to node
+   - drop node
 
 Searching:
-   expose cypher syntax
-   add helper to return docs (same as ES)
+   - expose cypher syntax
+   - add helper to return docs (same as ES)
