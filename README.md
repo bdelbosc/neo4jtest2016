@@ -24,13 +24,16 @@ The mapping must define which properties need to be propagate to graph node and 
 there must be a mapping because ':' is not accepted as node property:
 
 For document type File:
-  label=File // the node label
-  name=dc:title
-  author=dc:creator
-  duplicate=RELATION(rel:duplicate)
-  recommanded=RELATION(rel:recommanded)
 
-Indexing (or graphing) a doc can ben done with a sync listener becayse neo4j handle transaction.
+	<mapping type="File">
+      <type="label" value="File"/>
+      <type="property" field="dc:title" value="name" />
+      <type="property" field="dc:creator" value="creator" />
+      <type="relation" field="rel:duplicate" value="duplicate" />
+      <type="relation" field="rel:recommanded" value="recommanded" />
+	</mapping>
+
+Indexing (or graphing) a doc can ben done with a sync listener because neo4j handle transaction.
    
 on creation:
    send create node + relationship
@@ -44,7 +47,6 @@ on delete:
    drop relation to node
    drop node
 
-Searching
-
+Searching:
    expose cypher syntax
    add helper to return docs (same as ES)
